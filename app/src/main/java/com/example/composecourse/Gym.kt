@@ -1,6 +1,5 @@
 package com.example.composecourse
 
-import androidx.compose.ui.graphics.StrokeCap.Companion.Square
 
 
 val listOfGyms = listOf(

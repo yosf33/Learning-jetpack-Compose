@@ -43,9 +43,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GymScreen() {
     val vm: GymsViewModel = viewModel()
-
     LazyColumn {
-        items(vm.state) {gym->
+        items(vm.state) { gym ->
             GymItem(gym) {
                 vm.toggleFavouriteState(it)
             }
@@ -55,7 +54,7 @@ fun GymScreen() {
 }
 
 @Composable
-fun GymItem(gym: Gym,onClick: (Int) -> Unit) {
+fun GymItem(gym: Gym, onClick: (Int) -> Unit) {
 
 
     val icon = if (gym.isFavourite) {
@@ -76,26 +75,32 @@ fun GymItem(gym: Gym,onClick: (Int) -> Unit) {
                 .fillMaxWidth()
         ) {
             DefaultIcon(
-                Icons.Filled.Place,"gym icon",
+                Icons.Filled.Place, "gym icon",
                 Modifier
                     .weight(0.15f)
                     .fillMaxHeight()
             )
             GymDetails(gym, Modifier.weight(0.70f))
-            DefaultIcon(icon,"favourite gym icon",Modifier.weight(0.15f)) { onClick(gym.id) }
+            DefaultIcon(icon, "favourite gym icon", Modifier.weight(0.15f)) { onClick(gym.id) }
         }
     }
 }
 
 @Composable
-fun DefaultIcon(icon:ImageVector, contentDescription:String, modifier: Modifier, onClick:()->Unit={}) {
-    Image(imageVector = icon,
+fun DefaultIcon(
+    icon: ImageVector,
+    contentDescription: String,
+    modifier: Modifier,
+    onClick: () -> Unit = {}
+) {
+    Image(
+        imageVector = icon,
         contentDescription = contentDescription,
         modifier
             .padding(8.dp)
             .clickable { onClick() },
         colorFilter = ColorFilter.tint(Color.DarkGray)
-        )
+    )
 
 }
 
